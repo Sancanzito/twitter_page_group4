@@ -8,70 +8,226 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Animate.css for animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
+        :root {
+            --twitter-blue: #1DA1F2;
+            --twitter-blue-light: #71c9ff;
+            --twitter-blue-dark: #0f81c7;
+            --twitter-background: #F5F8FA;
+        }
+        
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #F5F5F5;
+            background-color: var(--twitter-background);
         }
+        
         .tweet-card {
             background-color: #FFFFFF;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
         }
+        
+        .tweet-card:hover {
+            box-shadow: 0 5px 15px rgba(29, 161, 242, 0.15);
+            transform: translateY(-2px);
+        }
+        
         .text-twitter-blue {
-            color: #1DA1F2;
+            color: var(--twitter-blue);
         }
+        
+        .bg-twitter-blue {
+            background-color: var(--twitter-blue);
+        }
+        
+        .btn-twitter {
+            background-color: var(--twitter-blue);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-twitter:hover {
+            background-color: var(--twitter-blue-dark);
+            transform: translateY(-2px);
+            color: white;
+        }
+        
         .navbar-brand {
             font-weight: bold;
         }
+        
         @media (min-width: 768px) {
             /* Hide top navbar on desktop */
             .top-navbar {
                 display: none !important;
             }
         }
+        
         @media (max-width: 767px) {
             /* Hide sidebar on mobile */
             .sidebar {
                 display: none !important;
             }
         }
+        
         .sidebar .btn {
             font-size: 0.9rem;
             padding: 0.5rem;
+            transition: all 0.3s ease;
         }
+        
+        .sidebar .btn:hover {
+            transform: translateX(5px);
+        }
+        
         .sidebar .dropdown-menu {
             font-size: 0.85rem;
         }
+        
         .trending-item {
             transition: all 0.3s ease;
             border-left: 3px solid transparent;
         }
+        
         .trending-item:hover {
             background-color: #f8f9fa;
-            border-left: 3px solid #1DA1F2;
+            border-left: 3px solid var(--twitter-blue);
+            transform: translateX(5px);
         }
+        
         .profile-img {
             width: 100px;
             height: 100px;
             object-fit: cover;
-            border: 3px solid #1DA1F2;
+            border: 3px solid var(--twitter-blue);
+            transition: all 0.3s ease;
         }
+        
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(29, 161, 242, 0.3);
+        }
+        
         .about-card {
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+        
         .about-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(29, 161, 242, 0.2);
         }
+        
         .blog-tag {
             position: absolute;
             top: 15px;
             right: 15px;
-            background-color: #1DA1F2;
+            background-color: var(--twitter-blue);
             color: white;
             padding: 4px 8px;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .blog-tag:hover {
+            background-color: var(--twitter-blue-dark);
+            transform: scale(1.05);
+        }
+        
+        .hero-banner {
+            background: linear-gradient(135deg, var(--twitter-blue) 0%, var(--twitter-blue-dark) 100%);
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 5px 20px rgba(29, 161, 242, 0.3);
+        }
+        
+        .hero-title {
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero-subtitle {
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-card {
+            transition: all 0.3s ease;
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(29, 161, 242, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--twitter-blue);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2) rotate(5deg);
+            color: var(--twitter-blue-dark);
+        }
+        
+        .wave-divider {
+            position: relative;
+            height: 50px;
+            overflow: hidden;
+        }
+        
+        .wave-divider svg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(29, 161, 242, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(29, 161, 242, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(29, 161, 242, 0); }
+        }
+        
+        .view-content-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .view-content-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(29, 161, 242, 0.3);
+        }
+        
+        .hero-icon {
+            font-size: 6rem;
+            opacity: 0.8;
+            animation: float 5s ease-in-out infinite;
         }
     </style>
 </head>
@@ -90,7 +246,7 @@
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="https://sites.google.com/view/bsedsci2a/home">
+                        <a class="nav-link" href="#">
                             <i class="bi bi-house-door me-1"></i> Home
                         </a>
                     </li>
@@ -128,6 +284,26 @@
         </div>
     </nav>
 
+    <!-- Hero Banner -->
+    <div class="hero-banner animate__animated animate__fadeIn">
+        <div class="wave-divider">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V56.44Z" class="shape-fill" fill="#ffffff"></path>
+            </svg>
+        </div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1 class="hero-title animate__animated animate__fadeInLeft">BSED-SCI 2A Blog Platform</h1>
+                    <p class="hero-subtitle animate__animated animate__fadeInLeft animate__delay-1s">Share your thoughts, ideas, and creativity with the world</p>
+                </div>
+                <div class="col-md-4 text-center animate__animated animate__fadeInRight">
+                    <i class="bi bi-journal-bookmark hero-icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Main container for the layout -->
     <div class="container-fluid mt-3">
         <div class="row">
@@ -137,7 +313,7 @@
                     <div class="card-body">
                         <div class="d-flex flex-column gap-2">
                             <!-- Home Link -->
-                            <a href="https://sites.google.com/view/bsedsci2a/home" class="btn btn-outline-primary text-start">
+                            <a href="#" class="btn btn-outline-primary text-start home-link">
                                 <i class="bi bi-house-door me-2"></i> Home
                             </a>
                             
@@ -180,7 +356,83 @@
                     <div class="card-body">
                         <h1 id="main-heading" class="card-title h3 mb-4">Home</h1>
                         
-                        <div id="blog-feed" class="row g-3">
+                        <!-- Home Section Content -->
+                        <div id="home-section">
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <div class="card feature-card mb-3">
+                                        <div class="card-body text-center p-4">
+                                            <i class="bi bi-journal-bookmark feature-icon"></i>
+                                            <h3 class="h4">Welcome to Our Blog Platform</h3>
+                                            <p class="text-muted">Discover amazing content created by our talented team of writers and developers.</p>
+                                            <button class="btn btn-twitter explore-blogs-btn">Explore Blogs</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-6 mb-3">
+                                    <div class="card feature-card h-100">
+                                        <div class="card-body text-center">
+                                            <i class="bi bi-people feature-icon"></i>
+                                            <h4 class="h5">Meet Our Team</h4>
+                                            <p class="text-muted">Get to know the creative minds behind our blog content.</p>
+                                            <button class="btn btn-outline-primary meet-team-btn">View Team</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="card feature-card h-100">
+                                        <div class="card-body text-center">
+                                            <i class="bi bi-star feature-icon"></i>
+                                            <h4 class="h5">Featured Content</h4>
+                                            <p class="text-muted">Check out our most popular and trending blog posts.</p>
+                                            <button class="btn btn-outline-primary view-featured-btn">View Featured</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="h5 mb-3">Latest Updates</h4>
+                                            <div class="d-flex align-items-center mb-3">
+                                                <div class="bg-twitter-blue rounded-circle p-2 me-3">
+                                                    <i class="bi bi-megaphone text-white"></i>
+                                                </div>
+                                                <div>
+                                                    <p class="mb-0">New blog posts added every week</p>
+                                                    <small class="text-muted">Posted 2 days ago</small>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center mb-3">
+                                                <div class="bg-twitter-blue rounded-circle p-2 me-3">
+                                                    <i class="bi bi-arrow-up-right-circle text-white"></i>
+                                                </div>
+                                                <div>
+                                                    <p class="mb-0">Website redesign launched with new features</p>
+                                                    <small class="text-muted">Posted 5 days ago</small>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center">
+                                                <div class="bg-twitter-blue rounded-circle p-2 me-3">
+                                                    <i class="bi bi-award text-white"></i>
+                                                </div>
+                                                <div>
+                                                    <p class="mb-0">Our blog platform won the Best Design Award</p>
+                                                    <small class="text-muted">Posted 1 week ago</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="blog-feed" class="row g-3" style="display: none;">
                             <!-- Blog posts will be injected here by JavaScript -->
                         </div>
                         
@@ -242,41 +494,41 @@
         // Team member information for About Us section
         const teamMembers = [
             {
-                name: "Daphnie",
-                fullName: "Daphnie Smith",
-                course: "BS Education Sciences",
-                hobbies: "Creative writing, photography, hiking",
-                quote: "The future belongs to those who believe in the beauty of their dreams.",
-                profilePic: "https://placehold.co/100x100/667eea/ffffff?text=D"
+                name: "Daphnie Marie Sandoval",
+                fullName: "Daphnie Marie Sandoval",
+                course: "Bachelor of Secondary Education Major in Science",
+                hobbies: "Sketching, Painting, Playing Mobile Games",
+                quote: '"I the Lord, will make it happen" -Isaiah 46:13.',
+                profilePic: "images/daphne.jpg"
             },
             {
                 name: "Jia Mae",
-                fullName: "Jia Mae Johnson",
-                course: "BS Computer Science",
-                hobbies: "Web development, digital art, gaming",
-                quote: "Code is like humor. When you have to explain it, it's bad.",
-                profilePic: "https://placehold.co/100x100/4299e1/ffffff?text=J"
+                fullName: "Jia Mae Lastimoso",
+                course: "Bachelor of Secondary Education Major in Science",
+                hobbies: "binge-watching, taking pictures, cleaning(not organizing), plucking flowers by the roadside(illegal)",
+                quote: "It never rains but it pours.",
+                profilePic: "images/jia.jpg"
             },
             {
                 name: "Ella May",
-                fullName: "Ella May Williams",
-                course: "BS Design Arts",
-                hobbies: "UI/UX design, illustration, pottery",
-                quote: "Design is not just what it looks like and feels like. Design is how it works.",
+                fullName: "Ella May Cuestas",
+                course: "Bachelor of Secondary Education Major in Science",
+                hobbies: "reading romance books, watching k-dramas and movies, listening to music, and journaling",
+                quote: '" Be pressureable like a precious diamond! 💎."',
                 profilePic: "https://placehold.co/100x100/f6e05e/ffffff?text=E"
             },
             {
                 name: "Mae Angelou",
-                fullName: "Mae Angelou Davis",
-                course: "BS Literature",
-                hobbies: "Poetry, reading, theater",
-                quote: "There is no greater agony than bearing an untold story inside you.",
-                profilePic: "https://placehold.co/100x100/e53e3e/ffffff?text=M"
+                fullName: "Mae Angelou A. Sabac",
+                course: "Bachelor of Secondary Education Major in Science",
+                hobbies: "Dancing, Drawing, Playing Badminton",
+                quote: '"God is within her, she will not fall; God will help her at break of day" -Psalm 46.',
+                profilePic: "images/angelou.jpg"
             },
             {
                 name: "Sean Gabriel",
                 fullName: "Sean Gabriel Q. Canillo",
-                course: "BS Education Sciences",
+                course: "Bachelor of Secondary Education Major in Science",
                 hobbies: "Playing chess, Playing mobile games, Watching anime",
                 quote: "I can do all things through Christ who strengthens me -Philippians 4:13.",
                 profilePic: "images/sean.jpg"
@@ -288,13 +540,19 @@
             {
                 name: "Daphnie",
                 handle: "@daphnie_dev",
-                profilePic: "images/sean.jpg",
+                profilePic: "images/daphne.jpg",
                 posts: [
                     "Exploring the vastness of space in my latest sci-fi adventure. The possibilities are endless when we look to the stars.",
                     "Just solved the mystery of the missing manuscript. Sometimes the answer is right in front of you!",
                     "Created a new fantasy world with unique magical systems. What kind of creatures should inhabit it?",
                     "Embarked on an adventure to unknown lands. The journey is just as important as the destination."
-                ],modals:["modal1","modal2","modal3","modal4"],
+                ],
+                modals: [
+                    "In this science fiction exploration, I delve into the possibilities of interstellar travel and the ethical implications of discovering alien life forms. How would humanity react to first contact?",
+                    "This mystery story follows a detective with a unique ability to see fragments of the past. The twist? The culprit is someone no one would suspect, not even the reader until the final reveal.",
+                    "My fantasy world features a magic system based on emotional energy. The stronger your emotions, the more powerful your magic, but also the more dangerous it becomes to wield.",
+                    "This adventure tale takes readers through treacherous jungles, ancient ruins, and encounters with mythical creatures. The protagonist must overcome personal fears to complete the quest."
+                ],
                 links: [
                     "https://sites.google.com/view/bsedsci2a/blogs/daphnie/blog1",
                     "https://sites.google.com/view/bsedsci2a/blogs/daphnie/blog2",
@@ -306,13 +564,19 @@
             {
                 name: "Jia Mae",
                 handle: "@jiamae_codes",
-                profilePic: "https://placehold.co/48x48/4299e1/ffffff?text=J",
+                profilePic: "images/jia.jpg",
                 posts: [
                     "Just finished my sci-fi short story about AI consciousness. How do we define what it means to be alive?",
                     "The mystery of the locked room finally unraveled. Sometimes the simplest explanation is the right one.",
                     "Building a fantasy realm where magic is derived from emotions. What would your magical ability be?",
                     "My character is about to embark on a perilous journey through the forbidden mountains."
-                ],modals:["modal1","modal2","modal3","modal4"],
+                ],
+                modals: [
+                    "This sci-fi piece explores the concept of artificial intelligence achieving true consciousness. It raises questions about rights, ethics, and what truly defines life and sentience.",
+                    "In this locked room mystery, the detective must solve an impossible crime where the murderer seems to have vanished into thin air. The solution will surprise even seasoned mystery fans.",
+                    "The fantasy realm I've created has a unique magic system where different emotions produce different magical effects. Joy creates light, fear creates shadows, anger creates fire, etc.",
+                    "The adventure through the forbidden mountains is fraught with danger, ancient traps, and mysterious creatures. The protagonist must rely on wits rather than strength to survive."
+                ],
                 links: [
                     "https://sites.google.com/view/bsedsci2a/blogs/jiamae/blog1",
                     "https://sites.google.com/view/bsedsci2a/blogs/jiamae/blog2",
@@ -331,7 +595,12 @@
                     "Designing a fantasy world where magic is slowly fading from the world. How would society adapt?",
                     "Writing about an adventure to recover lost artifacts from an ancient civilization."
                 ],
-                modals:["modal1","modal2","modal3","modal4"],
+                modals: [
+                    "This sci-fi concept explores digital immortality through consciousness uploading. But at what cost? Would you still be you, or just a copy? The story delves into these philosophical questions.",
+                    "In this psychological mystery, the detective suffers from dissociative identity disorder and doesn't realize they committed the crime. The story unfolds as both detective and culprit.",
+                    "My fantasy world is experiencing a gradual loss of magic, forcing societies to adapt to a non-magical existence. How do you maintain culture and technology when your fundamental resource is disappearing?",
+                    "This adventure follows a team of explorers seeking artifacts from a civilization that supposedly possessed advanced technology. The journey reveals secrets about our own world's history."
+                ],
                 links: [
                     "https://sites.google.com/view/bsedsci2a/blogs/ellamay/blog1",
                     "https://sites.google.com/view/bsedsci2a/blogs/ellamay/blog2",
@@ -342,15 +611,20 @@
             },
             {
                 name: "Mae Angelou",
-                handle: "@mae_angel",
-                profilePic: "https://placehold.co/48x48/e53e3e/ffffff?text=M",
+                handle: "@mae_explorer",
+                profilePic: "images/angelou.jpg",
                 posts: [
                     "Creating a sci-fi universe where humanity discovers we're not the first intelligent species in our galaxy.",
                     "Developing a mystery where every character has something to hide. The question is who has the biggest secret?",
                     "Building a fantasy culture that lives in harmony with magical creatures. What would that society look like?",
                     "Charting an adventure across treacherous seas to discover new continents."
                 ],
-                modals:["modal1","modal2","modal3","modal4"],
+                modals: [
+                    "In this sci-fi universe, humanity discovers ruins of an ancient alien civilization that once inhabited our solar system. The story explores what happened to them and whether the same fate awaits us.",
+                    "This mystery features an ensemble cast where every character is hiding something. The challenge for readers is to determine which secrets are relevant to the central crime and which are red herrings.",
+                    "My fantasy culture has developed symbiotic relationships with magical creatures. Dragons provide transportation and protection, fairies help with crops, and gnomes assist with technology, all in a carefully balanced society.",
+                    "This sea adventure follows explorers charting unknown waters. They encounter strange phenomena, unknown islands, and make discoveries that challenge their understanding of the world."
+                ],
                 links: [
                     "https://sites.google.com/view/bsedsci2a/blogs/mae/blog1",
                     "https://sites.google.com/view/bsedsci2a/blogs/mae/blog2",
@@ -362,14 +636,19 @@
             {
                 name: "Sean Gabriel",
                 handle: "@Shanthesheep7",
-                profilePic: "https://placehold.co/48x48/805ad5/ffffff?text=S",
+                profilePic: "images/sean.jpg",
                 posts: [
                     "Exploring the ethical implications of human cloning in my latest sci-fi story.",
                     "Crafting a mystery where the murder weapon hasn't been invented yet. Time travel complications!",
                     "Designing a fantasy religion based on elemental magic. How would worship practices differ?",
                     "Writing about an adventure through a jungle that changes layout daily. Navigation is a nightmare!"
                 ],
-                modals:["modal1","modal2","modal3","modal4"],
+                modals: [
+                    "This sci-fi story examines the ethical dilemmas of human cloning. If you could create a perfect copy of yourself, would it have the same rights? What makes us uniquely human?",
+                    "This time-travel mystery involves a murder where the weapon is from the future. The detective must not only find the culprit but also prevent temporal paradoxes that could unravel reality.",
+                    "In my fantasy world, religion is based on the four classical elements. Different regions worship different elemental deities, and their practices reflect their element's nature (fluid water rituals, rigid earth ceremonies, etc.).",
+                    "This adventure takes place in a magical jungle that rearranges itself daily. The explorers must use unconventional navigation methods and rely on local guides with unique knowledge to survive."
+                ],
                 links: [
                     "https://sites.google.com/view/bsedsci2a/blogs/sean/blog1",
                     "https://sites.google.com/view/bsedsci2a/blogs/sean/blog2",
@@ -382,10 +661,10 @@
 
         // Blog titles
         const blogTitles = [
-            "Blog 1",
-            "Blog 2",
-            "Blog 3",
-            "Blog 4"
+            "Blog1",
+            "Blog2",
+            "Blog3",
+            "Blog4"
         ];
 
         // Function to shuffle array (Fisher-Yates algorithm)
@@ -405,8 +684,12 @@
             // Add trending topics
             trendingContainer.innerHTML += `
                 <div class="trending-item p-2 rounded">
-                    <p class="fw-bold mb-0">#Programming</p>
-                    <p class="text-muted small mb-0">1.2k posts</p>
+                    <p class="fw-bold mb-0">#${blogTitles[blogIndex]}</p>
+                    <p class="text-muted small mb-0">Trending in Blogs</p>
+                </div>
+                <div class="trending-item p-2 rounded">
+                    <p class="fw-bold mb-0">#CreativeWriting</p>
+                    <p class="text-muted small mb-0">1.5k posts</p>
                 </div>
                 <div class="trending-item p-2 rounded">
                     <p class="fw-bold mb-0">#WebDev</p>
@@ -417,7 +700,7 @@
                     <p class="text-muted small mb-0">745 posts</p>
                 </div>
                 <div class="trending-item p-2 rounded">
-                    <p class="fw-bold mb-0">#CreativeWriting</p>
+                    <p class="fw-bold mb-0">#BSEDSCI2A</p>
                     <p class="text-muted small mb-0">632 posts</p>
                 </div>
             `;
@@ -429,7 +712,7 @@
             return `
                 <div class="col-12">
                     <div class="card tweet-card mb-3 blog-card position-relative" data-member-index="${members.indexOf(member)}" data-blog-index="${blogIndex}">
-                        <span class="blog-tag">Blog ${parseInt(blogIndex) + 1}</span>
+                        <span class="blog-tag">${blogTitles[blogIndex]}</span>
                         <div class="card-body">
                             <div class="d-flex">
                                 <img class="rounded-circle me-3" src="${member.profilePic}" alt="${member.name}'s profile picture" width="48" height="48">
@@ -476,9 +759,11 @@
         function updateFeed(blogIndex) {
             const feedContainer = document.getElementById('blog-feed');
             const aboutContainer = document.getElementById('about-us-section');
+            const homeSection = document.getElementById('home-section');
             
-            // Hide about section, show blog feed
+            // Hide about and home sections, show blog feed
             aboutContainer.style.display = 'none';
+            homeSection.style.display = 'none';
             feedContainer.style.display = 'flex';
             
             feedContainer.innerHTML = ''; // Clear old content
@@ -497,15 +782,25 @@
                 const blogHtml = createBlogCard(member, blogIndex);
                 feedContainer.innerHTML += blogHtml;
             });
+            
+            // Add animation to the new cards
+            setTimeout(() => {
+                document.querySelectorAll('.blog-card').forEach((card, index) => {
+                    card.classList.add('animate__animated', 'animate__fadeInUp');
+                    card.style.animationDelay = `${index * 0.1}s`;
+                });
+            }, 100);
         }
 
         // Function to show the About Us section
         function showAboutUs(personIndex) {
             const feedContainer = document.getElementById('blog-feed');
             const aboutContainer = document.getElementById('about-us-section');
+            const homeSection = document.getElementById('home-section');
             
-            // Hide blog feed, show about section
+            // Hide blog feed and home, show about section
             feedContainer.style.display = 'none';
+            homeSection.style.display = 'none';
             aboutContainer.style.display = 'flex';
             
             aboutContainer.innerHTML = ''; // Clear old content
@@ -524,12 +819,56 @@
                     aboutContainer.innerHTML += aboutHtml;
                 });
             }
+            
+            // Add animation to the about cards
+            setTimeout(() => {
+                document.querySelectorAll('.about-card').forEach((card, index) => {
+                    card.classList.add('animate__animated', 'animate__fadeInUp');
+                    card.style.animationDelay = `${index * 0.1}s`;
+                });
+            }, 100);
+        }
+        
+        // Function to show the home section
+        function showHomeSection() {
+            const feedContainer = document.getElementById('blog-feed');
+            const aboutContainer = document.getElementById('about-us-section');
+            const homeSection = document.getElementById('home-section');
+            
+            // Hide blog and about sections, show home
+            feedContainer.style.display = 'none';
+            aboutContainer.style.display = 'none';
+            homeSection.style.display = 'block';
+            
+            // Update the main heading
+            document.getElementById('main-heading').textContent = "Home";
+            
+            // Update trending section with general topics
+            const trendingContainer = document.getElementById('trending-content');
+            trendingContainer.innerHTML = `
+                <div class="trending-item p-2 rounded">
+                    <p class="fw-bold mb-0">#CreativeWriting</p>
+                    <p class="text-muted small mb-0">1.5k posts</p>
+                </div>
+                <div class="trending-item p-2 rounded">
+                    <p class="fw-bold mb-0">#WebDev</p>
+                    <p class="text-muted small mb-0">980 posts</p>
+                </div>
+                <div class="trending-item p-2 rounded">
+                    <p class="fw-bold mb-0">#DesignInspo</p>
+                    <p class="text-muted small mb-0">745 posts</p>
+                </div>
+                <div class="trending-item p-2 rounded">
+                    <p class="fw-bold mb-0">#BSEDSCI2A</p>
+                    <p class="text-muted small mb-0">632 posts</p>
+                </div>
+            `;
         }
 
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
-            // Set initial blog to display (randomized)
-            updateFeed(Math.floor(Math.random() * 4));
+            // Show home section initially
+            showHomeSection();
 
             // Add event listeners to blog dropdown items
             document.querySelectorAll('[data-blog]').forEach(item => {
@@ -561,6 +900,38 @@
                         toggle.click();
                     }
                 });
+            });
+            
+            // Add event listener to home link in top navbar
+            document.querySelector('.navbar-nav .nav-item .nav-link').addEventListener('click', (event) => {
+                event.preventDefault();
+                showHomeSection();
+                
+                // Close the dropdown on selection (mobile)
+                const dropdown = document.getElementById('navbarContent');
+                if (dropdown.classList.contains('show')) {
+                    const toggle = document.querySelector('.navbar-toggler');
+                    toggle.click();
+                }
+            });
+            
+            // Add event listener to home link in sidebar
+            document.querySelector('.home-link').addEventListener('click', (event) => {
+                event.preventDefault();
+                showHomeSection();
+            });
+            
+            // Add event listeners to home section buttons
+            document.querySelector('.explore-blogs-btn').addEventListener('click', () => {
+                updateFeed(Math.floor(Math.random() * 4));
+            });
+            
+            document.querySelector('.meet-team-btn').addEventListener('click', () => {
+                showAboutUs();
+            });
+            
+            document.querySelector('.view-featured-btn').addEventListener('click', () => {
+                updateFeed(0); // Show first blog category
             });
 
             // Handle blog card clicks to show modal (using event delegation)
