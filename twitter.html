@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter-Style Blog</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F5;
+        }
+        .tweet-card {
+            background-color: #FFFFFF;
+        }
+        .text-twitter-blue {
+            color: #1DA1F2;
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        @media (min-width: 768px) {
+            /* Hide top navbar on desktop */
+            .top-navbar {
+                display: none !important;
+            }
+        }
+        @media (max-width: 767px) {
+            /* Hide sidebar on mobile */
+            .sidebar {
+                display: none !important;
+            }
+        }
+        .sidebar .btn {
+            font-size: 0.9rem;
+            padding: 0.5rem;
+        }
+        .sidebar .dropdown-menu {
+            font-size: 0.85rem;
+        }
+        .trending-item {
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        .trending-item:hover {
+            background-color: #f8f9fa;
+            border-left: 3px solid #1DA1F2;
+        }
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border: 3px solid #1DA1F2;
+        }
+        .about-card {
+            transition: transform 0.3s ease;
+        }
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .blog-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #1DA1F2;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation Bar - Hidden on desktop -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top top-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand text-twitter-blue" href="#">
+                <i class="bi bi-twitter me-2"></i>Blog Platform
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
+                    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://sites.google.com/view/bsedsci2a/home">
+                            <i class="bi bi-house-door me-1"></i> Home
+                        </a>
+                    </li>
+                    
+                    <!-- Blog Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="blogDropdown" role="button" 
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-journal-bookmark me-1"></i> Blog Section
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="blogDropdown">
+                            <li><a class="dropdown-item" href="#" data-blog="0">Blog 1</a></li>
+                            <li><a class="dropdown-item" href="#" data-blog="1">Blog 2</a></li>
+                            <li><a class="dropdown-item" href="#" data-blog="2">Blog 3</a></li>
+                            <li><a class="dropdown-item" href="#" data-blog="3">Blog 4</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- About Us Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" 
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-people me-1"></i> About Us
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+                            <li><a class="dropdown-item" href="#" data-person="0">Daphnie</a></li>
+                            <li><a class="dropdown-item" href="#" data-person="1">Jia Mae</a></li>
+                            <li><a class="dropdown-item" href="#" data-person="2">Ella May</a></li>
+                            <li><a class="dropdown-item" href="#" data-person="3">Mae Angelou</a></li>
+                            <li><a class="dropdown-item" href="#" data-person="4">Sean Gabriel</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main container for the layout -->
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <!-- Left Sidebar (Navigation) - Hidden on mobile -->
+            <div class="col-md-3 col-lg-2 sidebar">
+                <div class="card sticky-top" style="top: 20px;">
+                    <div class="card-body">
+                        <div class="d-flex flex-column gap-2">
+                            <!-- Home Link -->
+                            <a href="https://sites.google.com/view/bsedsci2a/home" class="btn btn-outline-primary text-start">
+                                <i class="bi bi-house-door me-2"></i> Home
+                            </a>
+                            
+                            <!-- Blog Section -->
+                            <div class="dropdown">
+                                <button class="btn btn-outline-primary w-100 text-start dropdown-toggle" type="button" 
+                                        id="sidebarBlogDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-journal-bookmark me-2"></i> Blogs
+                                </button>
+                                <ul class="dropdown-menu w-100" aria-labelledby="sidebarBlogDropdown">
+                                    <li><a class="dropdown-item" href="#" data-blog="0">Blog 1: Science Fiction</a></li>
+                                    <li><a class="dropdown-item" href="#" data-blog="1">Blog 2: Mystery</a></li>
+                                    <li><a class="dropdown-item" href="#" data-blog="2">Blog 3: Fantasy</a></li>
+                                    <li><a class="dropdown-item" href="#" data-blog="3">Blog 4: Adventure</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- About Us Section -->
+                            <div class="dropdown">
+                                <button class="btn btn-outline-primary w-100 text-start dropdown-toggle" type="button" 
+                                        id="sidebarAboutDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-people me-2"></i> About Us
+                                </button>
+                                <ul class="dropdown-menu w-100" aria-labelledby="sidebarAboutDropdown">
+                                    <li><a class="dropdown-item" href="#" data-person="0">Daphnie</a></li>
+                                    <li><a class="dropdown-item" href="#" data-person="1">Jia Mae</a></li>
+                                    <li><a class="dropdown-item" href="#" data-person="2">Ella May</a></li>
+                                    <li><a class="dropdown-item" href="#" data-person="3">Mae Angelou</a></li>
+                                    <li><a class="dropdown-item" href="#" data-person="4">Sean Gabriel</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content Feed -->
+            <div class="col-12 col-md-9 col-lg-7">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 id="main-heading" class="card-title h3 mb-4">Home</h1>
+                        
+                        <div id="blog-feed" class="row g-3">
+                            <!-- Blog posts will be injected here by JavaScript -->
+                        </div>
+                        
+                        <!-- About Us Section (hidden by default) -->
+                        <div id="about-us-section" class="row g-3" style="display: none;">
+                            <!-- About content will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Sidebar (Trends) - Hidden on mobile -->
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="card sticky-top" style="top: 20px;">
+                    <div class="card-body">
+                        <h2 class="h5 card-title mb-3">What's happening</h2>
+                        <div class="d-flex flex-column gap-3" id="trending-content">
+                            <!-- Trending content will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light text-center py-3 mt-4">
+        <p class="mb-0">&copy; copyright2025</p>
+    </footer>
+
+    <!-- Modal for displaying a single blog post -->
+    <div class="modal fade" id="blogModal" tabindex="-1" aria-labelledby="blogModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="d-flex align-items-center">
+                        <img id="modal-profile-pic" class="rounded-circle me-3" src="" alt="Profile picture" width="48" height="48">
+                        <div>
+                            <h5 id="modal-name" class="modal-title mb-0"></h5>
+                            <span id="modal-handle" class="text-muted small"></span>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="modal-text" class="lead"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+                    <a id="view-article-btn" href="#" class="btn btn-primary">View Full Article</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap & JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Team member information for About Us section
+        const teamMembers = [
+            {
+                name: "Daphnie",
+                fullName: "Daphnie Smith",
+                course: "BS Education Sciences",
+                hobbies: "Creative writing, photography, hiking",
+                quote: "The future belongs to those who believe in the beauty of their dreams.",
+                profilePic: "https://placehold.co/100x100/667eea/ffffff?text=D"
+            },
+            {
+                name: "Jia Mae",
+                fullName: "Jia Mae Johnson",
+                course: "BS Computer Science",
+                hobbies: "Web development, digital art, gaming",
+                quote: "Code is like humor. When you have to explain it, it's bad.",
+                profilePic: "https://placehold.co/100x100/4299e1/ffffff?text=J"
+            },
+            {
+                name: "Ella May",
+                fullName: "Ella May Williams",
+                course: "BS Design Arts",
+                hobbies: "UI/UX design, illustration, pottery",
+                quote: "Design is not just what it looks like and feels like. Design is how it works.",
+                profilePic: "https://placehold.co/100x100/f6e05e/ffffff?text=E"
+            },
+            {
+                name: "Mae Angelou",
+                fullName: "Mae Angelou Davis",
+                course: "BS Literature",
+                hobbies: "Poetry, reading, theater",
+                quote: "There is no greater agony than bearing an untold story inside you.",
+                profilePic: "https://placehold.co/100x100/e53e3e/ffffff?text=M"
+            },
+            {
+                name: "Sean Gabriel",
+                fullName: "Sean Gabriel Q. Canillo",
+                course: "BS Education Sciences",
+                hobbies: "Playing chess, Playing mobile games, Watching anime",
+                quote: "I can do all things through Christ who strengthens me -Philippians 4:13.",
+                profilePic: "images/sean.jpg"
+            }
+        ];
+
+        // Blog members and their blog posts and links
+        const members = [
+            {
+                name: "Daphnie",
+                handle: "@daphnie_dev",
+                profilePic: "images/sean.jpg",
+                posts: [
+                    "Exploring the vastness of space in my latest sci-fi adventure. The possibilities are endless when we look to the stars.",
+                    "Just solved the mystery of the missing manuscript. Sometimes the answer is right in front of you!",
+                    "Created a new fantasy world with unique magical systems. What kind of creatures should inhabit it?",
+                    "Embarked on an adventure to unknown lands. The journey is just as important as the destination."
+                ],modals:["modal1","modal2","modal3","modal4"],
+                links: [
+                    "https://sites.google.com/view/bsedsci2a/blogs/daphnie/blog1",
+                    "https://sites.google.com/view/bsedsci2a/blogs/daphnie/blog2",
+                    "https://sites.google.com/view/bsedsci2a/blogs/daphnie/blog3",
+                    "https://sites.google.com/view/bsedsci2a/blogs/daphnie/blog4"
+                ],
+                imagePlaceholder: "https://placehold.co/600x300/667eea/ffffff?text=Blog+Post"
+            },
+            {
+                name: "Jia Mae",
+                handle: "@jiamae_codes",
+                profilePic: "https://placehold.co/48x48/4299e1/ffffff?text=J",
+                posts: [
+                    "Just finished my sci-fi short story about AI consciousness. How do we define what it means to be alive?",
+                    "The mystery of the locked room finally unraveled. Sometimes the simplest explanation is the right one.",
+                    "Building a fantasy realm where magic is derived from emotions. What would your magical ability be?",
+                    "My character is about to embark on a perilous journey through the forbidden mountains."
+                ],modals:["modal1","modal2","modal3","modal4"],
+                links: [
+                    "https://sites.google.com/view/bsedsci2a/blogs/jiamae/blog1",
+                    "https://sites.google.com/view/bsedsci2a/blogs/jiamae/blog2",
+                    "https://sites.google.com/view/bsedsci2a/blogs/jiamae/blog3",
+                    "https://sites.google.com/view/bsedsci2a/blogs/jiamae/blog4"
+                ],
+                imagePlaceholder: "https://placehold.co/600x300/4299e1/ffffff?text=Blog+Post"
+            },
+            {
+                name: "Ella May",
+                handle: "@ellamay_design",
+                profilePic: "https://placehold.co/48x48/f6e05e/ffffff?text=E",
+                posts: [
+                    "Working on a sci-fi concept where humans can upload their consciousness to the cloud. Would you do it?",
+                    "Crafting a mystery where the detective is the culprit without knowing it. The ultimate unreliable narrator.",
+                    "Designing a fantasy world where magic is slowly fading from the world. How would society adapt?",
+                    "Writing about an adventure to recover lost artifacts from an ancient civilization."
+                ],
+                modals:["modal1","modal2","modal3","modal4"],
+                links: [
+                    "https://sites.google.com/view/bsedsci2a/blogs/ellamay/blog1",
+                    "https://sites.google.com/view/bsedsci2a/blogs/ellamay/blog2",
+                    "https://sites.google.com/view/bsedsci2a/blogs/ellamay/blog3",
+                    "https://sites.google.com/view/bsedsci2a/blogs/ellamay/blog4"
+                ],
+                imagePlaceholder: "https://placehold.co/600x300/f6e05e/ffffff?text=Blog+Post"
+            },
+            {
+                name: "Mae Angelou",
+                handle: "@mae_angel",
+                profilePic: "https://placehold.co/48x48/e53e3e/ffffff?text=M",
+                posts: [
+                    "Creating a sci-fi universe where humanity discovers we're not the first intelligent species in our galaxy.",
+                    "Developing a mystery where every character has something to hide. The question is who has the biggest secret?",
+                    "Building a fantasy culture that lives in harmony with magical creatures. What would that society look like?",
+                    "Charting an adventure across treacherous seas to discover new continents."
+                ],
+                modals:["modal1","modal2","modal3","modal4"],
+                links: [
+                    "https://sites.google.com/view/bsedsci2a/blogs/mae/blog1",
+                    "https://sites.google.com/view/bsedsci2a/blogs/mae/blog2",
+                    "https://sites.google.com/view/bsedsci2a/blogs/mae/blog3",
+                    "https://sites.google.com/view/bsedsci2a/blogs/mae/blog4"
+                ],
+                imagePlaceholder: "https://placehold.co/600x300/e53e3e/ffffff?text=Blog+Post"
+            },
+            {
+                name: "Sean Gabriel",
+                handle: "@Shanthesheep7",
+                profilePic: "https://placehold.co/48x48/805ad5/ffffff?text=S",
+                posts: [
+                    "Exploring the ethical implications of human cloning in my latest sci-fi story.",
+                    "Crafting a mystery where the murder weapon hasn't been invented yet. Time travel complications!",
+                    "Designing a fantasy religion based on elemental magic. How would worship practices differ?",
+                    "Writing about an adventure through a jungle that changes layout daily. Navigation is a nightmare!"
+                ],
+                modals:["modal1","modal2","modal3","modal4"],
+                links: [
+                    "https://sites.google.com/view/bsedsci2a/blogs/sean/blog1",
+                    "https://sites.google.com/view/bsedsci2a/blogs/sean/blog2",
+                    "https://sites.google.com/view/bsedsci2a/blogs/sean/blog3",
+                    "https://sites.google.com/view/bsedsci2a/blogs/sean/blog4"
+                ],
+                imagePlaceholder: "https://placehold.co/600x300/805ad5/ffffff?text=Blog+Post"
+            }
+        ];
+
+        // Blog titles
+        const blogTitles = [
+            "Blog 1",
+            "Blog 2",
+            "Blog 3",
+            "Blog 4"
+        ];
+
+        // Function to shuffle array (Fisher-Yates algorithm)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Function to update the trending section
+        function updateTrendingSection(blogIndex) {
+            const trendingContainer = document.getElementById('trending-content');
+            trendingContainer.innerHTML = ''; // Clear old content
+            
+            // Add trending topics
+            trendingContainer.innerHTML += `
+                <div class="trending-item p-2 rounded">
+                    <p class="fw-bold mb-0">#Programming</p>
+                    <p class="text-muted small mb-0">1.2k posts</p>
+                </div>
+                <div class="trending-item p-2 rounded">
+                    <p class="fw-bold mb-0">#WebDev</p>
+                    <p class="text-muted small mb-0">980 posts</p>
+                </div>
+                <div class="trending-item p-2 rounded">
+                    <p class="fw-bold mb-0">#DesignInspo</p>
+                    <p class="text-muted small mb-0">745 posts</p>
+                </div>
+                <div class="trending-item p-2 rounded">
+                    <p class="fw-bold mb-0">#CreativeWriting</p>
+                    <p class="text-muted small mb-0">632 posts</p>
+                </div>
+            `;
+        }
+
+        // Function to create a Twitter-style blog card
+        function createBlogCard(member, blogIndex) {
+            const date = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            return `
+                <div class="col-12">
+                    <div class="card tweet-card mb-3 blog-card position-relative" data-member-index="${members.indexOf(member)}" data-blog-index="${blogIndex}">
+                        <span class="blog-tag">Blog ${parseInt(blogIndex) + 1}</span>
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <img class="rounded-circle me-3" src="${member.profilePic}" alt="${member.name}'s profile picture" width="48" height="48">
+                                <div class="flex-grow-1">
+                                    <div class="d-flex align-items-center mb-1">
+                                        <span class="fw-bold me-2">${member.name}</span>
+                                        <span class="text-muted me-2">${member.handle}</span>
+                                        <span class="text-muted">• ${date}</span>
+                                    </div>
+                                    <p class="mb-3">${member.posts[blogIndex]}</p>
+                                    <img src="${member.imagePlaceholder}" alt="Blog image" class="img-fluid rounded mb-3">
+                                    <button class="btn btn-primary view-content-btn">View Content</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to create an About Us card
+        function createAboutCard(member) {
+            return `
+                <div class="col-12">
+                    <div class="card about-card mb-4">
+                        <div class="card-body text-center">
+                            <img src="${member.profilePic}" alt="${member.name}'s profile picture" class="profile-img rounded-circle mb-3">
+                            <h3 class="card-title">${member.fullName}</h3>
+                            <h6 class="card-subtitle mb-2 text-muted">${member.course}</h6>
+                            <blockquote class="blockquote mb-3">
+                                <p class="mb-0">"${member.quote}"</p>
+                            </blockquote>
+                            <div class="card-text">
+                                <p class="fw-bold mb-1">Hobbies:</p>
+                                <p>${member.hobbies}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to update the blog feed with posts from a specific blog
+        function updateFeed(blogIndex) {
+            const feedContainer = document.getElementById('blog-feed');
+            const aboutContainer = document.getElementById('about-us-section');
+            
+            // Hide about section, show blog feed
+            aboutContainer.style.display = 'none';
+            feedContainer.style.display = 'flex';
+            
+            feedContainer.innerHTML = ''; // Clear old content
+
+            // Update the main heading
+            document.getElementById('main-heading').textContent = blogTitles[blogIndex];
+            
+            // Update the trending section
+            updateTrendingSection(blogIndex);
+
+            // Get current members array (shuffled)
+            let displayMembers = shuffleArray([...members]);
+
+            // Loop through all members and create a blog card for the selected blog
+            displayMembers.forEach((member) => {
+                const blogHtml = createBlogCard(member, blogIndex);
+                feedContainer.innerHTML += blogHtml;
+            });
+        }
+
+        // Function to show the About Us section
+        function showAboutUs(personIndex) {
+            const feedContainer = document.getElementById('blog-feed');
+            const aboutContainer = document.getElementById('about-us-section');
+            
+            // Hide blog feed, show about section
+            feedContainer.style.display = 'none';
+            aboutContainer.style.display = 'flex';
+            
+            aboutContainer.innerHTML = ''; // Clear old content
+
+            // Update the main heading
+            document.getElementById('main-heading').textContent = "About Our Team";
+            
+            // If a specific person is selected, show only that person
+            if (personIndex !== undefined) {
+                const aboutHtml = createAboutCard(teamMembers[personIndex]);
+                aboutContainer.innerHTML = aboutHtml;
+            } else {
+                // Show all team members
+                teamMembers.forEach((member) => {
+                    const aboutHtml = createAboutCard(member);
+                    aboutContainer.innerHTML += aboutHtml;
+                });
+            }
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set initial blog to display (randomized)
+            updateFeed(Math.floor(Math.random() * 4));
+
+            // Add event listeners to blog dropdown items
+            document.querySelectorAll('[data-blog]').forEach(item => {
+                item.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const blogIndex = event.target.getAttribute('data-blog');
+                    updateFeed(blogIndex);
+                    
+                    // Close the dropdown on selection (mobile)
+                    const dropdown = document.getElementById('navbarContent');
+                    if (dropdown.classList.contains('show')) {
+                        const toggle = document.querySelector('.navbar-toggler');
+                        toggle.click();
+                    }
+                });
+            });
+
+            // Add event listeners to about dropdown items
+            document.querySelectorAll('[data-person]').forEach(item => {
+                item.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const personIndex = event.target.getAttribute('data-person');
+                    showAboutUs(personIndex);
+                    
+                    // Close the dropdown on selection (mobile)
+                    const dropdown = document.getElementById('navbarContent');
+                    if (dropdown.classList.contains('show')) {
+                        const toggle = document.querySelector('.navbar-toggler');
+                        toggle.click();
+                    }
+                });
+            });
+
+            // Handle blog card clicks to show modal (using event delegation)
+            document.getElementById('blog-feed').addEventListener('click', (event) => {
+                const blogCard = event.target.closest('.blog-card');
+                if (blogCard) {
+                    const memberIndex = blogCard.getAttribute('data-member-index');
+                    const blogIndex = blogCard.getAttribute('data-blog-index');
+                    const member = members[memberIndex];
+                    
+                    // Set modal content
+                    document.getElementById('modal-profile-pic').src = member.profilePic;
+                    document.getElementById('modal-name').textContent = member.name;
+                    document.getElementById('modal-handle').textContent = member.handle;
+                    document.getElementById('modal-text').textContent = member.modals[blogIndex];
+                    document.getElementById('view-article-btn').href = member.links[blogIndex];
+                    
+                    // Show the modal
+                    const blogModal = new bootstrap.Modal(document.getElementById('blogModal'));
+                    blogModal.show();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
