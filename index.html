@@ -559,7 +559,12 @@
                     "https://sites.google.com/view/bsedsci2a/blogs/daphnie/blog3",
                     "https://sites.google.com/view/bsedsci2a/blogs/daphnie/blog4"
                 ],
-                imagePlaceholder: "https://placehold.co/600x300/667eea/ffffff?text=Blog+Post"
+                imagePlaceholder:[
+  "https://placehold.co/600x300/667eea/ffffff?text=Blog+Post",
+  "https://placehold.co/600x300/e53e3e/ffffff?text=Blog+Post",
+  "https://placehold.co/600x300/4299e1/ffffff?text=Blog+Post",
+  "https://placehold.co/600x300/f6e05e/ffffff?text=Blog+Post"
+    ]
             },
             {
                 name: "Jia Mae",
@@ -583,7 +588,12 @@
                     "https://sites.google.com/view/bsedsci2a/blogs/jiamae/blog3",
                     "https://sites.google.com/view/bsedsci2a/blogs/jiamae/blog4"
                 ],
-                imagePlaceholder: "https://placehold.co/600x300/4299e1/ffffff?text=Blog+Post"
+                imagePlaceholder: [
+  "https://placehold.co/600x300/e53e3e/ffffff?text=Blog+Post",
+  "https://placehold.co/600x300/667eea/ffffff?text=Blog+Post",
+  "https://placehold.co/600x300/4299e1/ffffff?text=Blog+Post",
+  "https://placehold.co/600x300/f6e05e/ffffff?text=Blog+Post"
+]
             },
             {
                 name: "Ella May",
@@ -607,7 +617,12 @@
                     "https://sites.google.com/view/bsedsci2a/blogs/ellamay/blog3",
                     "https://sites.google.com/view/bsedsci2a/blogs/ellamay/blog4"
                 ],
-                imagePlaceholder: "https://placehold.co/600x300/f6e05e/ffffff?text=Blog+Post"
+                imagePlaceholder: [
+  "https://placehold.co/600x300/667eea/ffffff?text=Blog+Post",
+  "https://placehold.co/600x300/f6e05e/ffffff?text=Blog+Post",
+  "https://placehold.co/600x300/4299e1/ffffff?text=Blog+Post",
+  "https://placehold.co/600x300/e53e3e/ffffff?text=Blog+Post"
+]
             },
             {
                 name: "Mae Angelou",
@@ -631,7 +646,12 @@
                     "https://sites.google.com/view/bsedsci2a/blogs/mae/blog3",
                     "https://sites.google.com/view/bsedsci2a/blogs/mae/blog4"
                 ],
-                imagePlaceholder: "https://placehold.co/600x300/e53e3e/ffffff?text=Blog+Post"
+                imagePlaceholder: [
+  "https://placehold.co/600x300/4299e1/ffffff?text=Blog+Post",
+  "https://placehold.co/600x300/e53e3e/ffffff?text=Blog+Post",
+  "https://placehold.co/600x300/f6e05e/ffffff?text=Blog+Post",
+  "https://placehold.co/600x300/667eea/ffffff?text=Blog+Post"
+]
             },
             {
                 name: "Sean Gabriel",
@@ -655,7 +675,12 @@
                     "https://sites.google.com/view/bsedsci2a/blogs/sean/blog3",
                     "https://sites.google.com/view/bsedsci2a/blogs/sean/blog4"
                 ],
-                imagePlaceholder: "https://placehold.co/600x300/805ad5/ffffff?text=Blog+Post"
+                imagePlaceholder: [
+  "https://placehold.co/600x300/e53e3e/ffffff?text=Blog+Post",
+  "https://placehold.co/600x300/4299e1/ffffff?text=Blog+Post",
+  "https://placehold.co/600x300/667eea/ffffff?text=Blog+Post",
+  "https://placehold.co/600x300/f6e05e/ffffff?text=Blog+Post"
+]
             }
         ];
 
@@ -723,7 +748,7 @@
                                         <span class="text-muted">• ${date}</span>
                                     </div>
                                     <p class="mb-3">${member.posts[blogIndex]}</p>
-                                    <img src="${member.imagePlaceholder}" alt="Blog image" class="img-fluid rounded mb-3">
+                                    <img src="${member.imagePlaceholder[blogIndex]}" alt="Blog image" class="img-fluid rounded mb-3">
                                     <button class="btn btn-primary view-content-btn">View Content</button>
                                 </div>
                             </div>
