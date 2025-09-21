@@ -22,6 +22,41 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--twitter-background);
         }
+        .tweet-card,
+.about-card,
+.feature-card {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.tweet-card .card-body,
+.about-card .card-body,
+.feature-card .card-body {
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+@media (max-width: 575.98px) {
+    .tweet-card .card-body,
+    .about-card .card-body,
+    .feature-card .card-body {
+        padding: 0.75rem;
+    }
+    .tweet-card img,
+    .about-card img,
+    .feature-card img {
+        max-width: 100%;
+        height: auto;
+    }
+    .profile-img {
+        width: 70px;
+        height: 70px;
+    }
+}
+
         
         .tweet-card {
             background-color: #FFFFFF;
@@ -515,14 +550,14 @@
                 course: "Bachelor of Secondary Education Major in Science",
                 hobbies: "reading romance books, watching k-dramas and movies, listening to music, and journaling",
                 quote: '" Be pressureable like a precious diamond! 💎."',
-                profilePic: "https://placehold.co/100x100/f6e05e/ffffff?text=E"
+                profilePic: "images/ellah.jpg"
             },
             {
                 name: "Mae Angelou",
                 fullName: "Mae Angelou A. Sabac",
                 course: "Bachelor of Secondary Education Major in Science",
                 hobbies: "Dancing, Drawing, Playing Badminton",
-                quote: '"God is within her, she will not fall; God will help her at break of day" -Psalm 46.',
+                quote: '"kung kaya ng iba, edi ipagawa mo sa kanila”',
                 profilePic: "images/angelou.jpg"
             },
             {
@@ -598,7 +633,7 @@
             {
                 name: "Ella May",
                 handle: "@ellamay_design",
-                profilePic: "https://placehold.co/48x48/f6e05e/ffffff?text=E",
+                profilePic: "images/ellah.jpg",
                 posts: [
                     "Working on a sci-fi concept where humans can upload their consciousness to the cloud. Would you do it?",
                     "Crafting a mystery where the detective is the culprit without knowing it. The ultimate unreliable narrator.",
