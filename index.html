@@ -635,7 +635,7 @@
                     "The adventure through the forbidden mountains is fraught with danger, ancient traps, and mysterious creatures. The protagonist must rely on wits rather than strength to survive."
                 ],
                 links: [
-                    "https://docs.google.com/document/d/1fz2--bjJFgL7-7GvA5kUMkUYDzgoC51Y/edit?fbclid=IwY2xjawM8t-tleHRuA2FlbQIxMABicmlkETFHVU5MWjViZERIRFU4blJZAR4fFRZL9bbDI2w4n2ovkCeWLnPRlk8ZiV1opyHKjG0cjsQ8easeUzLZl9Nkaw_aem_B_mW-l7rTn9K1uJECJWcww&tab=t.0",
+                    "https://sites.google.com/view/bsedsci2a/blogs/group-4/blog1resilience/jia-mae",
                     "https://sites.google.com/view/bsedsci2a/blogs/jiamae/blog2",
                     "https://sites.google.com/view/bsedsci2a/blogs/jiamae/blog3",
                     "https://sites.google.com/view/bsedsci2a/blogs/jiamae/blog4"
@@ -1025,7 +1025,7 @@
                     document.getElementById('modal-handle').textContent = member.handle;
                     document.getElementById('modal-text').textContent = member.modals[blogIndex];
                     document.getElementById('view-article-btn').href = member.links[blogIndex];
-                    
+                    document.getElementById('view-article-btn').target = "_blank";
                     // Show the modal
                     const blogModal = new bootstrap.Modal(document.getElementById('blogModal'));
                     blogModal.show();
