@@ -56,7 +56,24 @@
         height: 70px;
     }
 }
-
+@media (max-width: 575.98px) {
+    .tweet-card .card-body,
+    .tweet-card .card-body * {
+        font-size: clamp(0.75rem, 2vw, 0.95rem) !important;
+        line-height: 1.25 !important;
+        word-break: break-word;
+    }
+    .tweet-card .fw-bold,
+    .tweet-card .card-title {
+        font-size: clamp(0.85rem, 2.5vw, 1.05rem) !important;
+    }
+    .tweet-card .mb-3 {
+        margin-bottom: 0.5rem !important;
+    }
+    .tweet-card .me-2 {
+        margin-right: 0.25rem !important;
+    }
+}
         
         .tweet-card {
             background-color: #FFFFFF;
@@ -772,7 +789,7 @@
             return `
                 <div class="col-12">
                     <div class="card tweet-card mb-3 blog-card position-relative" data-member-index="${members.indexOf(member)}" data-blog-index="${blogIndex}">
-                        <span class="blog-tag">${blogTitles[blogIndex]}</span>
+                        <span class="blog-tag d-none d-sm-block">${blogTitles[blogIndex]}</span>
                         <div class="card-body">
                             <div class="d-flex">
                                 <img class="rounded-circle me-3 d-none d-sm-block" src="${member.profilePic}" alt="${member.name}'s profile picture" width="48" height="48">
