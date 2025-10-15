@@ -289,39 +289,6 @@
 .tweet-card .card-body .d-flex {
     flex: 1;
 }
-.tweet-card .card-body img.img-fluid {
-    width: 100%;
-    max-height: 300px;
-    object-fit: cover;
-    object-position: center;
-    margin: 0.75rem 0;
-    border-radius: 8px;
-}
-
-/* Mobile adjustment */
-@media (max-width: 575.98px) {
-    .tweet-card .card-body img.img-fluid {
-        max-height: 200px;
-        margin: 0.5rem 0;
-    }
-}
-    
-    .tweet-card .card-body .d-flex {
-        flex-direction: column;
-    }
-}
-
-/* Ensure proper layout for content */
-.tweet-card .flex-grow-1 {
-    display: flex;
-    flex-direction: column;
-}
-
-/* Make sure button appears below image */
-.tweet-card .view-content-btn {
-    margin-top: 0.5rem;
-    align-self: flex-start;
-}
     </style>
 </head>
 <body>
@@ -818,7 +785,7 @@
                                         <span class="text-muted">• ${date}</span>
                                     </div>
                                     <p class="mb-3">${member.posts[blogIndex]}</p>
-                                    <img src="${member.imagePlaceholder[blogIndex]}" alt="Blog image" class="img-fluid rounded mb-3">
+                                   <img src="${member.imagePlaceholder[blogIndex]}" alt="Blog image" class="img-fluid rounded mb-3 w-100" style="max-height: 300px; object-fit: cover;">
                                     <button class="btn btn-primary view-content-btn">View Content</button>
                                 </div>
                             </div>
