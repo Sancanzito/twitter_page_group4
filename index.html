@@ -992,9 +992,43 @@
                 showAboutUs();
             });
             
-            document.querySelector('.view-featured-btn').addEventListener('click', () => {
-                updateFeed(0); // Show first blog category
-            });
+           document.querySelector('.view-featured-btn').addEventListener('click', () => {
+    // Get 5 random members
+    const shuffledMembers = shuffleArray([...members]);
+    const randomMembers = shuffledMembers.slice(0, 5);
+    
+    // Create a custom feed with 5 random members
+    const feedContainer = document.getElementById('blog-feed');
+    const aboutContainer = document.getElementById('about-us-section');
+    const homeSection = document.getElementById('home-section');
+    
+    // Hide about and home sections, show blog feed
+    aboutContainer.style.display = 'none';
+    homeSection.style.display = 'none';
+    feedContainer.style.display = 'flex';
+    
+    feedContainer.innerHTML = ''; // Clear old content
+
+    // Update the main heading
+    document.getElementById('main-heading').textContent = "Featured Blogs";
+    
+    // Update trending section
+    updateTrendingSection(0);
+
+    // Create blog cards for each random member (show their first blog)
+    randomMembers.forEach((member) => {
+        const blogHtml = createBlogCard(member, 0); // Show first blog from each member
+        feedContainer.innerHTML += blogHtml;
+    });
+    
+    // Add animation to the new cards
+    setTimeout(() => {
+        document.querySelectorAll('.blog-card').forEach((card, index) => {
+            card.classList.add('animate__animated', 'animate__fadeInUp');
+            card.style.animationDelay = `${index * 0.1}s`;
+        });
+    }, 100);
+});
 
             // Handle blog card clicks to show modal (using event delegation)
             document.getElementById('blog-feed').addEventListener('click', (event) => {
