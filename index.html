@@ -616,8 +616,8 @@
                 ],
                 imagePlaceholder:[
   "images/blog1.jfif",
-  "https://placehold.co/600x300/e53e3e/ffffff?text=Blog+Post",
-  "https://placehold.co/600x300/4299e1/ffffff?text=Blog+Post"
+  "images/dapdap.jfif",
+  "images/scooby.jfif"
     ]
             },
             {
@@ -642,7 +642,7 @@
                 imagePlaceholder: [
   "images/rain.jpg",
   "images/jialove.jfif",
-  "https://placehold.co/600x300/4299e1/ffffff?text=Blog+Post"
+  "images/ella3.jfif"
 ]
             },
             {
@@ -667,7 +667,7 @@
                 imagePlaceholder: [
   "images/ellablog.jfif",
   "images/secondellah.jpg",
-  "https://placehold.co/600x300/4299e1/ffffff?text=Blog+Post"
+  "images/ella3.jfif"
 ]
             },
             {
@@ -702,7 +702,7 @@
                 posts: [
                     "Resilience, Distress, Despite the raging seas.",
                     "What is love? A feeling called kilig",
-                    "This blog is a statement of promise from the author to her future self. It explores the value of past experiences in shaping a bright future."
+                    "The future doesn't always follow the path we plan — sometimes it leads us to places we never imagined, but exactly where we're meant to be."
             ],
                 modals: [
                     "This blog is a personal reflection on surviving academic storms, showing how I learned to pause, care for myself, and lean on others to build resilience. It recognizes that each small act of de-stressing or self-compassion isn’t just coping but a quiet training ground for a stronger, more hopeful future beyond school.",
@@ -1008,7 +1008,7 @@
                     document.getElementById('modal-profile-pic').src = member.profilePic;
                     document.getElementById('modal-name').textContent = member.name;
                     document.getElementById('modal-handle').textContent = member.handle;
-                    document.getElementById('modal-text').textContent = member.modals[blogIndex];
+                    document.getElementById('modal-text').innerHTML = member.modals[blogIndex];
                     document.getElementById('view-article-btn').href = member.links[blogIndex];
                     document.getElementById('view-article-btn').target = "_blank";
                     // Show the modal
