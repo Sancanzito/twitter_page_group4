@@ -993,11 +993,25 @@
             });
             
            document.querySelector('.view-featured-btn').addEventListener('click', () => {
-    // Get 5 random members
-    const shuffledMembers = shuffleArray([...members]);
-    const randomMembers = shuffledMembers.slice(0, 5);
+    // Create array of all possible blog combinations (member + blogIndex)
+    const allBlogs = [];
     
-    // Create a custom feed with 5 random members
+    // Loop through all members and all blog indices (0, 1, 2)
+    members.forEach((member, memberIndex) => {
+        for (let blogIndex = 0; blogIndex < 3; blogIndex++) {
+            allBlogs.push({
+                member: member,
+                memberIndex: memberIndex,
+                blogIndex: blogIndex
+            });
+        }
+    });
+    
+    // Shuffle and get 5 random blogs
+    const shuffledBlogs = shuffleArray(allBlogs);
+    const randomBlogs = shuffledBlogs.slice(0, 5);
+    
+    // Create a custom feed with 5 random blogs
     const feedContainer = document.getElementById('blog-feed');
     const aboutContainer = document.getElementById('about-us-section');
     const homeSection = document.getElementById('home-section');
@@ -1015,9 +1029,9 @@
     // Update trending section
     updateTrendingSection(0);
 
-    // Create blog cards for each random member (show their first blog)
-    randomMembers.forEach((member) => {
-        const blogHtml = createBlogCard(member, 0); // Show first blog from each member
+    // Create blog cards for each random blog
+    randomBlogs.forEach((blog) => {
+        const blogHtml = createBlogCard(blog.member, blog.blogIndex);
         feedContainer.innerHTML += blogHtml;
     });
     
@@ -1029,7 +1043,6 @@
         });
     }, 100);
 });
-
             // Handle blog card clicks to show modal (using event delegation)
             document.getElementById('blog-feed').addEventListener('click', (event) => {
                 const blogCard = event.target.closest('.blog-card');
